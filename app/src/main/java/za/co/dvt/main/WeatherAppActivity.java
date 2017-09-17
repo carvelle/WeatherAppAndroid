@@ -198,7 +198,7 @@ public class WeatherAppActivity extends AppCompatActivity {
         CurrentWeatherCronJobRunner.QueueJob(60000, weatherRunnable);
 
         CronJobRunner ExtendedWeatherCronJobRunner = new CronJobRunner(handler);
-        ExtendedWeatherCronJobRunner.QueueJob(20, ExtendedWeatherRunnable);
+        ExtendedWeatherCronJobRunner.QueueJob(60000, ExtendedWeatherRunnable);
     }
 
     @Override
