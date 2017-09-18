@@ -28,6 +28,7 @@ import za.co.dvt.models.ExtendedForecastModel;
 import za.co.dvt.models.WeatherConditionModel;
 import za.co.dvt.models.WeatherModel;
 import za.co.dvt.network.BaseConnectivityManager;
+import za.co.dvt.network.WrappedHttpClient;
 import za.co.dvt.utilities.ConvertTemperatures;
 import za.co.dvt.utilities.DateUtils;
 import za.co.dvt.utilities.GetCountryFromCode;
@@ -99,7 +100,8 @@ public class WeatherAppActivity extends AppCompatActivity {
         if(lat != 0.0 && lng != 0.0) {
             String url = getResources().getString(R.string.service_url);
             PointF latlng = new PointF((float)lat,(float)lng);
-            BaseConnectivityManager connectivityManager = new BaseConnectivityManager<>(CurrentWeatherModel.class, this, url, latlng);
+            WrappedHttpClient httpClient = new  WrappedHttpClient();
+            BaseConnectivityManager connectivityManager = new BaseConnectivityManager<>(CurrentWeatherModel.class, this, url, latlng, httpClient);
             connectivityManager.setnetworkTaskCompleteListener(new BaseConnectivityManager.NetworkTaskCompleteListener() {
                 @Override
                 public void onRemoteCallComplete(Object dataModel) {
@@ -117,7 +119,8 @@ public class WeatherAppActivity extends AppCompatActivity {
         if(lat != 0.0 && lng != 0.0) {
             String url = getResources().getString(R.string.extended_forecast_url);
             PointF latlng = new PointF((float)lat,(float)lng);
-            BaseConnectivityManager connectivityManager = new BaseConnectivityManager<>(ExtendedForecastModel.class, this, url, latlng);
+            WrappedHttpClient httpClient = new  WrappedHttpClient();
+            BaseConnectivityManager connectivityManager = new BaseConnectivityManager<>(ExtendedForecastModel.class, this, url, latlng, httpClient);
             connectivityManager.setnetworkTaskCompleteListener(new BaseConnectivityManager.NetworkTaskCompleteListener() {
                 @Override
                 public void onRemoteCallComplete(Object dataModel) {

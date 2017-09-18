@@ -33,14 +33,16 @@ public class BaseConnectivityManager<T> extends AsyncTask<T, Void, T>  {
     String lng;
     String url;
     Context context;
+    WrappedHttpClient wrappedHttpClient;
 
     NetworkTaskCompleteListener networkTaskCompleteListener;
-    public BaseConnectivityManager(Class<T> ctype, Context context, String url, PointF latlng) {
+    public BaseConnectivityManager(Class<T> ctype, Context context, String url, PointF latlng, WrappedHttpClient wrappedHttpClient) {
         this.lat = String.valueOf(latlng.x);
         this.lng = String.valueOf(latlng.y);
         this.classType= ctype;
         this.context = context;
         this.url = url;
+        this.wrappedHttpClient = wrappedHttpClient;
     }
 
     public void setnetworkTaskCompleteListener(NetworkTaskCompleteListener networkTaskCompleteListener) {
@@ -49,7 +51,7 @@ public class BaseConnectivityManager<T> extends AsyncTask<T, Void, T>  {
 
     @Override
     protected T doInBackground(T... params) {
-        WrappedHttpClient wrappedHttpClient = new WrappedHttpClient();
+        wrappedHttpClient = new WrappedHttpClient();
         String appid = context.getResources().getString(R.string.APPID);
         String completeUrl = AppendCoordinates.AppendCoordinates(url,lat,lng,appid);
         String jsonRespone = wrappedHttpClient.RequestAsync(completeUrl, RequestMethod.GET);

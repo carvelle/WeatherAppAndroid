@@ -44,7 +44,6 @@
             android:layout_width="0dp"
             grid:layout_columnWeight="1.5"
             grid:layout_rowWeight="1"
-            android:textSize="50pt"
             android:weightSum="1"
             android:orientation="vertical"
             grid:layout_gravity="fill">
