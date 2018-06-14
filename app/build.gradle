@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:25.3.1'
     compile 'com.android.tools.lint:lint-api:26.1.2'
     compile 'com.android.tools.lint:lint-checks:26.1.2'
+    compile group: 'com.android.tools.lint', name: 'lint', version: '26.1.2'
 }
